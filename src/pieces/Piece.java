@@ -2,6 +2,12 @@ package pieces;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
+import javax.imageio.*;
+
+import java.io.FileInputStream;
+
+import java.awt.Image;
 
 import main.Board;
 import main.MoveClass;
@@ -28,6 +34,16 @@ public class Piece {
     public Piece(Board board){
         this.board = board;
     }
+
+    BufferedImage sheet;
+    {
+        try{
+            sheet = ImageIO.read(new FileInputStream("res/SheetImage.png"));
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+    protected int sheetScale = sheet.getWidth()/6;
 
     public boolean isValidMovement(Board board, MoveClass move){
         return false;

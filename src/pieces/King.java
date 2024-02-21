@@ -4,10 +4,7 @@ import main.Board;
 import main.MoveClass;
 
 import java.awt.image.BufferedImage;
-import java.io.FileInputStream;
-import java.io.IOException;
 
-import javax.imageio.ImageIO;
 
 public class King extends Piece{
 
@@ -33,15 +30,7 @@ public class King extends Piece{
             kingColCastle = 4;
         }
 
-        try {
-            if (this.isWhite){
-                this.sprite = ImageIO.read(new FileInputStream("res/WhiteKing.png")).getScaledInstance(board.tileSize, board.tileSize, BufferedImage.SCALE_SMOOTH);
-            } else{
-                this.sprite = ImageIO.read(new FileInputStream("res/BlackKing.png")).getScaledInstance(board.tileSize, board.tileSize, BufferedImage.SCALE_SMOOTH);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        this.sprite = sheet.getSubimage(0 * sheetScale, isWhite ? 1 : sheetScale, sheetScale, sheetScale).getScaledInstance(board.tileSize, board.tileSize, BufferedImage.SCALE_SMOOTH);
     }
 
     public boolean isValidMovement(Board board, MoveClass move){

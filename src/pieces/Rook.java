@@ -4,10 +4,6 @@ import main.Board;
 import main.MoveClass;
 
 import java.awt.image.BufferedImage;
-import java.io.FileInputStream;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
 
 public class Rook extends Piece{
     public Rook(Board board, int col, int row, boolean isWhite){
@@ -21,15 +17,7 @@ public class Rook extends Piece{
         this.isWhite = isWhite;
         this.pieceMoved = false;
 
-        try {
-            if (this.isWhite){
-                this.sprite = ImageIO.read(new FileInputStream("res/WhiteRook.png")).getScaledInstance(board.tileSize, board.tileSize, BufferedImage.SCALE_SMOOTH);
-            } else{
-                this.sprite = ImageIO.read(new FileInputStream("res/BlackRook.png")).getScaledInstance(board.tileSize, board.tileSize, BufferedImage.SCALE_SMOOTH);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        this.sprite = sheet.getSubimage(4 * sheetScale, isWhite ? 1 : sheetScale, sheetScale, sheetScale).getScaledInstance(board.tileSize, board.tileSize, BufferedImage.SCALE_SMOOTH);
     }
 
     public boolean isValidMovement(Board board, MoveClass move){
