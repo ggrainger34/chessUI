@@ -82,8 +82,41 @@ public class Board extends JPanel{
             System.out.println("Checkmate...\n");
         }
         if (isStaleMate(playerColorWhite)){
-            System.out.println("StaleMate...\n");
+            System.out.println("Stalemate...\n");
         }
+
+
+        //This is not technically correct as we compare the POSITON not the moves
+        //I will improve this when zobrist hashing is implemented (this may be a while away)
+        int moveStackSize = moveStack.size();
+        
+        if (moveStackSize >= 9){
+            MoveClass prevMove0 = moveStack.get(moveStackSize - 1);
+            MoveClass prevMove1 = moveStack.get(moveStackSize - 5);
+            MoveClass prevMove2 = moveStack.get(moveStackSize - 9);
+
+            if (isSameMove(prevMove0, prevMove1) && isSameMove(prevMove1, prevMove2)){
+                System.out.println("Stalemate\n");
+                System.exit(0);
+            }
+        }
+    }
+
+    //Are 2 moves the same
+    public boolean isSameMove(MoveClass m1, MoveClass m2){
+        if (m1.piece != m2.piece){
+            return false;
+        }
+
+        if (m1.oldCol != m2.oldCol || m1.newRow != m2.newRow){
+            return false;
+        }
+
+        if (m1.oldCol != m2.oldCol || m1.newCol != m2.newCol){
+            return false;
+        }
+
+        return true;
     }
 
     public boolean isCheckMate(boolean playerColor){
