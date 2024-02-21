@@ -80,9 +80,11 @@ public class Board extends JPanel{
 
         if (isCheckMate(playerColorWhite)){
             System.out.println("Checkmate...\n");
+            System.exit(0);
         }
         if (isStaleMate(playerColorWhite)){
             System.out.println("Stalemate...\n");
+            System.exit(0);
         }
 
 
