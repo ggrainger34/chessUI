@@ -9,7 +9,7 @@ import java.awt.image.BufferedImage;
 public class Bishop extends Piece{
     public Bishop(Board board, int col, int row, boolean isWhite){
         super(board);
-        this.name = "Bishop";
+        this.letter = isWhite ? 'B' : 'b';
         this.col = col;
         this.row = row;
         this.xPos = board.tileSize * col;

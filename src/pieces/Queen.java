@@ -9,7 +9,7 @@ import java.awt.image.BufferedImage;
 public class Queen extends Piece{
     public Queen(Board board, int col, int row, boolean isWhite){
         super(board);
-        this.name = "Queen";
+        this.letter = isWhite ? 'Q' : 'q';
         this.col = col;
         this.row = row;
         this.xPos = board.tileSize * col;

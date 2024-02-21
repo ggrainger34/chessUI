@@ -23,7 +23,7 @@ public class Piece {
 
     public BufferedImage piece;
 
-    public String name;
+    public char letter;
 
     public boolean pieceMoved;
 

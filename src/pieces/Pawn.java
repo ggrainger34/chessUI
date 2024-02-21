@@ -9,7 +9,7 @@ import java.awt.image.BufferedImage;
 public class Pawn extends Piece{
     public Pawn(Board board, int col, int row, boolean isWhite){
         super(board);
-        this.name = "Pawn";
+        this.letter = isWhite ? 'P' : 'p';
         this.col = col;
         this.row = row;
         this.xPos = board.tileSize * col;
@@ -34,7 +34,7 @@ public class Pawn extends Piece{
         }
         else{
             MoveClass previousMove = board.moveStack.peek();
-            if ((move.newRow + movementDirection == move.oldRow) && ((move.oldCol - 1 == move.newCol) || (move.oldCol + 1 == move.newCol)) && (((board.getPiece(move.newCol, move.newRow + movementDirection)) != null)) && (move.oldRow == enPassantPosition) && ((previousMove.piece.name == "Pawn") && (previousMove.doubleMove) && (previousMove.newCol == move.newCol))){
+            if ((move.newRow + movementDirection == move.oldRow) && ((move.oldCol - 1 == move.newCol) || (move.oldCol + 1 == move.newCol)) && (((board.getPiece(move.newCol, move.newRow + movementDirection)) != null)) && (move.oldRow == enPassantPosition) && ((previousMove.piece.letter == 'P') && (previousMove.doubleMove) && (previousMove.newCol == move.newCol))){
                 return true;
             }
             //Criteria for movement of pawns - very long but does work

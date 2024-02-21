@@ -9,7 +9,7 @@ import java.awt.image.BufferedImage;
 public class Knight extends Piece{
     public Knight(Board board, int col, int row, boolean isWhite){
         super(board);
-        this.name = "Knight";
+        this.letter = isWhite ? 'N' : 'n';
         this.col = col;
         this.row = row;
         this.xPos = board.tileSize * col;

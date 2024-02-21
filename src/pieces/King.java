@@ -13,7 +13,7 @@ public class King extends Piece{
 
     public King(Board board, int col, int row, boolean isWhite){
         super(board);
-        this.name = "King";
+        this.letter = isWhite ? 'K' : 'k';
         this.col = col;
         this.row = row;
         this.xPos = board.tileSize * col;
@@ -44,10 +44,10 @@ public class King extends Piece{
 
     private boolean canShortCastle(MoveClass move){
         Piece rook = board.getPiece(kingColCastle + 3, kingRowCastle);
-        if (rook == null || rook.isWhite != this.isWhite){
+        if (rook == null || rook.isWhite != this.isWhite || (rook.letter != 'R' && rook.letter != 'r')){
             return false;
         }
-        if ((kingRowCastle == move.oldRow && kingColCastle == move.oldCol) && (kingColCastle + 2 == move.newCol && kingRowCastle == move.newRow) && (board.getPiece(kingColCastle + 1, kingRowCastle) == null) && (board.getPiece(kingColCastle + 2, kingRowCastle) == null) && (rook.name == "Rook")){
+        if ((kingRowCastle == move.oldRow && kingColCastle == move.oldCol) && (kingColCastle + 2 == move.newCol && kingRowCastle == move.newRow) && (board.getPiece(kingColCastle + 1, kingRowCastle) == null) && (board.getPiece(kingColCastle + 2, kingRowCastle) == null)){
             move.isShortCastle = true;
             return true;
         }
@@ -56,10 +56,10 @@ public class King extends Piece{
 
     private boolean canLongCastle(MoveClass move){
         Piece rook = board.getPiece(kingColCastle - 4, kingRowCastle);
-        if (rook == null || rook.isWhite != this.isWhite){
+        if (rook == null || rook.isWhite != this.isWhite || (rook.letter != 'R' && rook.letter != 'r')){
             return false;
         }
-        if ((kingRowCastle == move.oldRow && kingColCastle == move.oldCol) && (kingColCastle - 2 == move.newCol && kingRowCastle == move.newRow) && (board.getPiece(kingColCastle - 1, kingRowCastle) == null) && (board.getPiece(kingColCastle - 2, kingRowCastle) == null) && (board.getPiece(kingColCastle - 3, kingRowCastle) == null) && (rook.name == "Rook")){
+        if ((kingRowCastle == move.oldRow && kingColCastle == move.oldCol) && (kingColCastle - 2 == move.newCol && kingRowCastle == move.newRow) && (board.getPiece(kingColCastle - 1, kingRowCastle) == null) && (board.getPiece(kingColCastle - 2, kingRowCastle) == null) && (board.getPiece(kingColCastle - 3, kingRowCastle) == null)){
             move.isLongCastle = true;
             return true;
         }

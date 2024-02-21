@@ -102,6 +102,8 @@ public class Board extends JPanel{
                 System.exit(0);
             }
         }
+
+        System.out.printf("%s\n", BoardFormatConverter.convertCharBoardToFEN(BoardFormatConverter.boardFormatToCharBoard(this)));
     }
 
     //Are 2 moves the same
@@ -176,10 +178,10 @@ public class Board extends JPanel{
 
     //Implement the move
     public void makeMove(MoveClass move){
-        if (move.piece.name == "Pawn"){
+        if (move.piece.letter == 'P' || move.piece.letter == 'p'){
             makePawnMove(move);
         }
-        else if (move.piece.name == "King"){
+        else if (move.piece.letter == 'K' || move.piece.letter == 'k'){
             makeKingMove(move);
         }
 
@@ -343,7 +345,7 @@ public class Board extends JPanel{
                 Piece currentPiece = getPiece(c, r);
                 if (currentPiece != null){
                     //If we have found the king return its location
-                    if (currentPiece.name == "King" && currentPiece.isWhite == isWhite){
+                    if ((currentPiece.letter == 'K' || currentPiece.letter == 'k') && currentPiece.isWhite == isWhite){
                         return currentPiece;
                     }
                 }
@@ -379,7 +381,6 @@ public class Board extends JPanel{
         }
 
         return legalMoves;
-
     }
 
     public void addPieces(){
